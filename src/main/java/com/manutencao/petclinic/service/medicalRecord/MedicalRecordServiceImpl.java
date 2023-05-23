@@ -1,4 +1,5 @@
 package com.manutencao.petclinic.service.medicalRecord;
+import com.manutencao.petclinic.dto.MedicalRecordDTO;
 import com.manutencao.petclinic.entity.MedicalRecord;
 import com.manutencao.petclinic.repository.IMedicalRecordRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +13,8 @@ public class MedicalRecordServiceImpl implements IMedicalRecordService{
     private final IMedicalRecordRepository repository;
 
     @Override
-    public MedicalRecord save(MedicalRecord medicalRecord) {
-        return this.repository.save(medicalRecord);
+    public MedicalRecord save(MedicalRecordDTO medicalRecordDTO) {
+        return this.repository.save(this.dtoToEntity(medicalRecordDTO));
     }
 
     @Override
@@ -24,5 +25,14 @@ public class MedicalRecordServiceImpl implements IMedicalRecordService{
     @Override
     public List<MedicalRecord> findAll() {
         return this.repository.findAll();
+    }
+
+    private MedicalRecord dtoToEntity(MedicalRecordDTO medicalRecordDTO){
+        return MedicalRecord.builder()
+                .record(medicalRecordDTO.getRecord())
+                .date(medicalRecordDTO.getDate())
+                .petId(medicalRecordDTO.getPetId())
+                .veterinarian(medicalRecordDTO.getVeterinarian())
+                .build();
     }
 }

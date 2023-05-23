@@ -1,5 +1,6 @@
 package com.manutencao.petclinic.controller;
 
+import com.manutencao.petclinic.dto.PetDTO;
 import com.manutencao.petclinic.entity.Pet;
 import com.manutencao.petclinic.service.pet.IPetService;
 import lombok.RequiredArgsConstructor;
@@ -24,5 +25,5 @@ public class PetController {
     }
 
     @PostMapping
-    public Pet save(@RequestBody Pet pet) { return this.service.save(pet); }
+    public Pet save(@RequestBody PetDTO petDTO) { return this.service.save(petDTO); }
 }

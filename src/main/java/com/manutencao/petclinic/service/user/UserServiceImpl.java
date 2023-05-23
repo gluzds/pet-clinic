@@ -1,5 +1,6 @@
 package com.manutencao.petclinic.service.user;
 
+import com.manutencao.petclinic.dto.UserDTO;
 import com.manutencao.petclinic.entity.User;
 import com.manutencao.petclinic.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +14,8 @@ public class UserServiceImpl implements IUserService{
     private final IUserRepository repository;
 
     @Override
-    public User save(User user) {
-        return this.repository.save(user);
+    public User save(UserDTO userDTO) {
+        return this.repository.save(this.dtoToEntity(userDTO));
     }
 
     @Override
@@ -25,5 +26,13 @@ public class UserServiceImpl implements IUserService{
     @Override
     public List<User> findAll() {
         return this.repository.findAll();
+    }
+
+    private User dtoToEntity(UserDTO userDTO){
+        return User.builder()
+                .cellphone(userDTO.getCellphone())
+                .email(userDTO.getEmail())
+                .fullName(userDTO.getFullName())
+                .build();
     }
 }

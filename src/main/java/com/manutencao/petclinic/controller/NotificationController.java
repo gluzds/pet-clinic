@@ -1,5 +1,6 @@
 package com.manutencao.petclinic.controller;
 
+import com.manutencao.petclinic.dto.NotificationDTO;
 import com.manutencao.petclinic.entity.Notification;
 import com.manutencao.petclinic.service.notification.INotificationService;
 import lombok.RequiredArgsConstructor;
@@ -24,5 +25,5 @@ public class NotificationController {
     }
 
     @PostMapping
-    public Notification save(@RequestBody Notification notification) { return this.service.save(notification); }
+    public Notification save(@RequestBody NotificationDTO notificationDTO) { return this.service.save(notificationDTO); }
 }

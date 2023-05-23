@@ -1,8 +1,10 @@
 package com.manutencao.petclinic.service.pet;
+import com.manutencao.petclinic.dto.PetDTO;
 import com.manutencao.petclinic.entity.Pet;
 import com.manutencao.petclinic.entity.User;
 import com.manutencao.petclinic.repository.IPetRepository;
 import com.manutencao.petclinic.repository.IUserRepository;
+import com.manutencao.petclinic.service.user.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +15,11 @@ import java.util.Optional;
 @Service
 public class PetServiceImpl implements IPetService{
     private final IPetRepository repository;
-    private final IUserRepository userRepository;
+    private final IUserService userService;
 
     @Override
-    public Pet save(Pet pet) {
-        return this.repository.save(pet);
+    public Pet save(PetDTO petDTO) {
+        return this.repository.save(this.dtoToEntity(petDTO));
     }
 
     @Override
@@ -32,11 +34,15 @@ public class PetServiceImpl implements IPetService{
 
     @Override
     public List<Pet> findAllByUser(long userId) {
-        Optional<User> user = this.userRepository.findById(userId);
-        if(user.isEmpty()){
-            throw new RuntimeException("Usuário não encontrado");
-        } else {
-            return this.repository.findAllByUser(user.get());
-        }
+        User user = this.userService.findById(userId);
+        return this.repository.findAllByUser(user);
+    }
+
+    private Pet dtoToEntity(PetDTO petDTO){
+        return Pet.builder()
+                .birthday(petDTO.getBirthday())
+                .breed(petDTO.getBreed())
+                .owner(userService.findById(petDTO.getOwnerId()))
+                .build();
     }
 }

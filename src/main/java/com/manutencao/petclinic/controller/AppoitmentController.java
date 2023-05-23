@@ -1,5 +1,6 @@
 package com.manutencao.petclinic.controller;
 
+import com.manutencao.petclinic.dto.AppointmentDTO;
 import com.manutencao.petclinic.entity.Appointment;
 import com.manutencao.petclinic.service.appointment.IAppointmentService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class AppoitmentController {
     }
 
     @PostMapping
-    public Appointment save(@RequestBody Appointment appointment) {
-        return this.service.save(appointment);
+    public Appointment save(@RequestBody AppointmentDTO appointmentDTO) {
+        return this.service.save(appointmentDTO);
     }
 }

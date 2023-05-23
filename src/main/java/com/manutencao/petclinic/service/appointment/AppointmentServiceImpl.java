@@ -1,5 +1,6 @@
 package com.manutencao.petclinic.service.appointment;
 import com.manutencao.petclinic.entity.Appointment;
+import com.manutencao.petclinic.dto.AppointmentDTO;
 import com.manutencao.petclinic.repository.IAppoitmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,11 +9,11 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class AppoitmentServiceImpl implements IAppointmentService{
+public class AppointmentServiceImpl implements IAppointmentService{
     private final IAppoitmentRepository repository;
     @Override
-    public Appointment save(Appointment appointment) {
-        return this.repository.save(appointment);
+    public Appointment save(AppointmentDTO appointmentDTO) {
+        return this.repository.save(this.dtoToEntity(appointmentDTO));
     }
 
     @Override
@@ -23,5 +24,13 @@ public class AppoitmentServiceImpl implements IAppointmentService{
     @Override
     public List<Appointment> findAll(){
         return this.repository.findAll();
+    }
+
+    private Appointment dtoToEntity(AppointmentDTO appointmentDTO){
+        return Appointment.builder()
+                .date(appointmentDTO.getDate())
+                .petId(appointmentDTO.getPetId())
+                .veterinarian(appointmentDTO.getVeterinarian())
+                .build();
     }
 }

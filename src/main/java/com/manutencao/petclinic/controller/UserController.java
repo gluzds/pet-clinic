@@ -1,5 +1,6 @@
 package com.manutencao.petclinic.controller;
 
+import com.manutencao.petclinic.dto.UserDTO;
 import com.manutencao.petclinic.entity.Pet;
 import com.manutencao.petclinic.entity.User;
 import com.manutencao.petclinic.service.pet.IPetService;
@@ -32,5 +33,5 @@ public class UserController {
     }
 
     @PostMapping
-    public User save(@RequestBody User user) { return this.service.save(user); }
+    public User save(@RequestBody UserDTO userDTO) { return this.service.save(userDTO); }
 }

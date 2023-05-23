@@ -1,5 +1,6 @@
 package com.manutencao.petclinic.controller;
 
+import com.manutencao.petclinic.dto.MedicalRecordDTO;
 import com.manutencao.petclinic.entity.MedicalRecord;
 import com.manutencao.petclinic.service.medicalRecord.IMedicalRecordService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class MedicalRecordController {
     }
 
     @PostMapping
-    public MedicalRecord save(@RequestBody MedicalRecord medicalRecord) {
-        return this.service.save(medicalRecord);
+    public MedicalRecord save(@RequestBody MedicalRecordDTO medicalRecordDTO) {
+        return this.service.save(medicalRecordDTO);
     }
 }
