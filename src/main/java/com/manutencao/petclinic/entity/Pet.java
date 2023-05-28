@@ -30,6 +30,9 @@ public class Pet {
     @Column(name = "birthday")
     private LocalDate birthday;
 
+    @Column(name = "photo_url")
+    private String photoUrl;
+
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;

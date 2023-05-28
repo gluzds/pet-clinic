@@ -1,7 +1,6 @@
 package com.manutencao.petclinic.service.notification;
 
 import com.manutencao.petclinic.dto.NotificationDTO;
-import com.manutencao.petclinic.entity.Appointment;
 import com.manutencao.petclinic.entity.Notification;
 
 import java.util.List;

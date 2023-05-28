@@ -3,13 +3,11 @@ import com.manutencao.petclinic.dto.PetDTO;
 import com.manutencao.petclinic.entity.Pet;
 import com.manutencao.petclinic.entity.User;
 import com.manutencao.petclinic.repository.IPetRepository;
-import com.manutencao.petclinic.repository.IUserRepository;
 import com.manutencao.petclinic.service.user.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -35,7 +33,7 @@ public class PetServiceImpl implements IPetService{
     @Override
     public List<Pet> findAllByUser(long userId) {
         User user = this.userService.findById(userId);
-        return this.repository.findAllByUser(user);
+        return this.repository.findAllByOwner(user);
     }
 
     private Pet dtoToEntity(PetDTO petDTO){

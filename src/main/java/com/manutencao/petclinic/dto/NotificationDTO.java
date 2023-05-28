@@ -1,7 +1,6 @@
 package com.manutencao.petclinic.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.manutencao.petclinic.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface IPetRepository extends CrudRepository<Pet, Long> {
     List<Pet> findAll();
-    List<Pet> findAllByUser(User user);
+    List<Pet> findAllByOwner(User owner);
 }
