@@ -16,6 +16,7 @@ import java.time.LocalDate;
 public class PetDTO {
     private String breed;
     private String name;
+    private String photoUrl;
     private LocalDate birthday;
     private long ownerId;
 

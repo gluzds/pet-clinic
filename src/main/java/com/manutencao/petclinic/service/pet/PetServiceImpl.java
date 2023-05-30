@@ -41,6 +41,7 @@ public class PetServiceImpl implements IPetService{
                 .birthday(petDTO.getBirthday())
                 .breed(petDTO.getBreed())
                 .owner(userService.findById(petDTO.getOwnerId()))
+                .photoUrl(petDTO.getPhotoUrl())
                 .build();
     }
 }
